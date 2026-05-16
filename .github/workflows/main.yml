@@ -1,0 +1,29 @@
+name: Build Minecraft Mod
+on: [push, workflow_dispatch] # Tự động chạy khi có code mới hoặc chạy thủ công
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Tải mã nguồn về máy chủ GitHub
+      uses: actions/checkout@v4
+
+    - name: Cài đặt Java 21
+      uses: actions/setup-java@v4
+      with:
+        java-version: '21'
+        distribution: 'temurin'
+
+    - name: Cấp quyền thực thi cho Gradle
+      run: chmod +x ./gradlew
+      working-directory: ./sus-chunk-finder-main/SusChunkFinder
+
+    - name: Chạy lệnh Build Mod
+      run: ./gradlew build
+      working-directory: ./sus-chunk-finder-main/SusChunkFinder
+
+    - name: Lưu và tải file .jar thành phẩm
+      uses: actions/upload-artifact@v4
+      with:
+        name: Mod-Thanh-Pham
+        path: ./sus-chunk-finder-main/SusChunkFinder/build/libs/*.jar
