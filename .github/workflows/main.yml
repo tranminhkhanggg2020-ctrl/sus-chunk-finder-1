@@ -14,19 +14,18 @@ jobs:
         java-version: '21'
         distribution: 'temurin'
 
-    - name: Cấp quyền thực thi cho Gradle
-      run: chmod +x ./gradlew
-      # Đã bỏ /SusChunkFinder ở cuối
-      working-directory: ./sus-chunk-finder-main 
+    - name: Sửa tên file và cấp quyền thực thi cho Gradle
+      run: |
+        if [ -f gradlew.txt ]; then mv gradlew.txt gradlew; fi
+        chmod +x ./gradlew
+      working-directory: ./sus-chunk-finder-main/sus-chunk-finder-main/SusChunkFinder/SusChunkFinder
 
     - name: Chạy lệnh Build Mod
       run: ./gradlew build
-      # Đã bỏ /SusChunkFinder ở cuối
-      working-directory: ./sus-chunk-finder-main 
+      working-directory: ./sus-chunk-finder-main/sus-chunk-finder-main/SusChunkFinder/SusChunkFinder
 
     - name: Lưu và tải file .jar thành phẩm
       uses: actions/upload-artifact@v4
       with:
         name: Mod-Thanh-Pham
-        # Đã sửa lại đường dẫn tìm file .jar
-        path: ./sus-chunk-finder-main/build/libs/*.jar
+        path: ./sus-chunk-finder-main/sus-chunk-finder-main/SusChunkFinder/SusChunkFinder/build/libs/*.jar
