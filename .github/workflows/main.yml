@@ -1,5 +1,5 @@
 name: Build Minecraft Mod
-on: [push, workflow_dispatch] # Tự động chạy khi có code mới hoặc chạy thủ công
+on: [push, workflow_dispatch]
 
 jobs:
   build:
@@ -16,14 +16,17 @@ jobs:
 
     - name: Cấp quyền thực thi cho Gradle
       run: chmod +x ./gradlew
-      working-directory: ./sus-chunk-finder-main/SusChunkFinder
+      # Đã bỏ /SusChunkFinder ở cuối
+      working-directory: ./sus-chunk-finder-main 
 
     - name: Chạy lệnh Build Mod
       run: ./gradlew build
-      working-directory: ./sus-chunk-finder-main/SusChunkFinder
+      # Đã bỏ /SusChunkFinder ở cuối
+      working-directory: ./sus-chunk-finder-main 
 
     - name: Lưu và tải file .jar thành phẩm
       uses: actions/upload-artifact@v4
       with:
         name: Mod-Thanh-Pham
-        path: ./sus-chunk-finder-main/SusChunkFinder/build/libs/*.jar
+        # Đã sửa lại đường dẫn tìm file .jar
+        path: ./sus-chunk-finder-main/build/libs/*.jar
