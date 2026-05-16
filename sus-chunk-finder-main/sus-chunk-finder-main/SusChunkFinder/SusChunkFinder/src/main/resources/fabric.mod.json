@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "sus-chunk-finder",
+  "version": "${version}",
+  "name": "Sus Chunk Finder",
+  "description": "Highlights suspicious chunks that may contain hidden player bases.",
+  "authors": ["you"],
+  "license": "MIT",
+  "icon": "assets/sus-chunk-finder/icon.png",
+
+  "environment": "*",
+
+  "entrypoints": {
+    "client": [
+      "com.suschunkfinder.SusChunkFinderClient"
+    ]
+  },
+
+  "mixins": [],
+
+  "depends": {
+    "fabricloader": ">=0.16.9",
+    "fabric-api":   "*",
+    "minecraft":    "~1.21.4",
+    "java":         ">=21"
+  }
+}
